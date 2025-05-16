@@ -1,0 +1,150 @@
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 20px;
+    color: #555;
+}
+
+label, select {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+}
+
+#innhold {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+select {
+    font-family: inherit;
+    color: inherit;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding-left: 5px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 5px 10px 0px #e6e6e6;
+}
+
+select>option {
+    background-color: rgb(247, 247, 247);
+    padding: 15px;
+    border: 1px solid rgb(41, 18, 18);
+}
+
+#chart-seksjon {
+    width: 700px;
+    position: relative;
+
+}
+
+#chart {
+    width: 100%;
+    height: 400px;
+    border: 1px solid #ccc;
+    margin: 0 auto;
+    box-shadow: 0px 5px 10px 0px #e6e6e6;
+    border-radius: 15px;
+}
+
+#chart rect:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#chart-wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+
+#select-wrapper {
+    position: absolute;
+    left: -230px;
+
+}
+
+.stolpe-verdi {
+    text-shadow: rgb(133, 133, 133) 1px 0 10px;
+    font-size: 8px;
+    font-weight: bold;
+    fill: white;
+    pointer-events: none;
+}
+
+
+#detaljseksjon {
+    margin: auto;
+    display: flex;
+    gap: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 10px 0px #e6e6e6;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+#sted-liste {
+    
+    font-size: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    justify-content: space-evenly;
+}
+
+.sted-valg {
+    font-size: 14px;
+}
+
+
+#detaljer {
+    flex: 1;
+    margin: 0 auto;
+
+}
+
+#detaljer table {
+  border-collapse: collapse;
+  box-shadow: 0px 5px 10px 0px #e6e6e6;
+  border-left: 1px solid #ddd;
+}
+
+#detaljer tbody th, td {
+  font-weight: normal;
+  text-align: left;
+  font-size: 14px;
+  padding: 1rem 2rem;
+}
+
+#detaljer tbody td {
+    font-weight: bold;
+}
+
+#detaljer thead{
+    text-align: center;
+    box-shadow: 0px 5px 10px 0px #e6e6e6;
+    background-color: white;
+
+}
+
+#detaljer thead th{
+    padding: 12px;
+
+}
+
+#detaljer tbody th:nth-child(even) {
+    background-color: #fff;
+}
+
+#detaljer tbody tr:nth-child(even)  {
+    background-color: #eee;
+}

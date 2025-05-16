@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+       <meta charset="UTF-8">
+       <title>Boligpriser per sted</title>
+       <link rel="stylesheet" href="style.css">
+
+    </head>
+    <body>
+        
+        <h2>Boligprisutvikling</h2>
+            <div id="innhold">
+                <div id="chart-seksjon">
+                        <div id="select-wrapper">
+                            <label for="felt"></label>
+                            <select id="felt">
+                                <option value="Endring siste måned">Endring siste måned</option> 
+                                <option value="Endring sesongjustert siste måned">Sesongjustert siste måned</option> 
+                                <option value="Endring hittil i år">Endring hittil i år</option> 
+                                <option value="Endring siste år">Endring siste år</option>
+                                <option value="Endring siste 5 år">Endring siste 5 år</option>
+                                <option value="Endring siste 10 år">Endring siste 10 år</option>
+                                <option value="Gjennomsnitt kvm. pris">Gjennomsnitt kvm. pris</option>
+                                <option value="Gjennomsnittspris">Gjennomsnittspris</option>
+                            </select>
+                        </div>
+                        <div id="chart-wrapper">
+                            <svg id="chart" viewBox="0 0 410 250"></svg>
+                        </div>
+            </div>
+
+                <div id="detaljseksjon">
+                <div id="sted-liste"></div>
+                <div id="detaljer"></div>
+                </div>
+
+            </div>
+        <script src="script.js"></script>
+</html>
