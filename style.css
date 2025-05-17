@@ -42,14 +42,18 @@ select>option {
 }
 
 #chart-seksjon {
-    width: 700px;
+    width: 100%;
+    max-width: 700px;
     position: relative;
+    margin: 0 auto;
 
 }
 
 #chart {
     width: 100%;
-    height: 400px;
+    height: auto;
+    display: block;
+    padding: 8px;
     border: 1px solid #ccc;
     margin: 0 auto;
     box-shadow: 0px 5px 10px 0px #e6e6e6;
@@ -149,17 +153,23 @@ select>option {
     background-color: #eee;
 }
 
+
+
 @media (max-width: 750px) {
+
     #chart-seksjon {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 0 1rem;
+        box-sizing: border-box;
     }
 
     #select-wrapper {
         position: static;
-        margin-bottom: 1rem;
+        margin-bottom: 0 0 1rem 0;
+        width: 100%;
     }
 
     #chart-wrapper {
@@ -167,6 +177,7 @@ select>option {
     }
 
     #detaljseksjon {
+        
         flex-direction: column-reverse;
         align-items: stretch;
     }
@@ -176,7 +187,7 @@ select>option {
         flex-wrap: wrap;
         justify-content: center;
         width: 100%;
-        padding: 5px, 0px, 5px, 0px;
+        padding: 5px;
         box-sizing: border-box;
         gap: 25px;
     }
@@ -197,7 +208,10 @@ select>option {
         width: 100%;
     }
 
+
     body {
+        max-width: 100%;
+        overflow-x: hidden;
         padding: 10px;
     }
 }
