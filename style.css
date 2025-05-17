@@ -148,3 +148,56 @@ select>option {
 #detaljer tbody tr:nth-child(even)  {
     background-color: #eee;
 }
+
+@media (max-width: 750px) {
+    #chart-seksjon {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #select-wrapper {
+        position: static;
+        margin-bottom: 1rem;
+    }
+
+    #chart-wrapper {
+        width: 100%;
+    }
+
+    #detaljseksjon {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    #sted-liste {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        padding: 5px, 0px, 5px, 0px;
+        box-sizing: border-box;
+        gap: 25px;
+    }
+
+    .sted-valg {
+        width: auto;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    #detaljer {
+        width: 100%;
+    }
+
+    #detaljer table {
+        width: 100%;
+    }
+
+    body {
+        padding: 10px;
+    }
+}
