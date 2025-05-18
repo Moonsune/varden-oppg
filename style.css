@@ -6,7 +6,8 @@ body {
     color: #555;
 }
 
-label, select {
+label, 
+select {
     font-size: 1rem;
     margin-bottom: 10px;
 }
@@ -28,14 +29,13 @@ select {
     color: inherit;
     border: 1px solid #ccc;
     border-radius: 15px;
-    padding-left: 5px;
     padding: 10px;
     font-size: 16px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 5px 10px 0px #e6e6e6;
 }
 
-select>option {
+select > option {
     background-color: rgb(247, 247, 247);
     padding: 15px;
     border: 1px solid rgb(41, 18, 18);
@@ -96,7 +96,6 @@ select>option {
 }
 
 #sted-liste {
-    
     font-size: 12px;
     padding: 20px;
     display: flex;
@@ -113,7 +112,6 @@ select>option {
 #detaljer {
     flex: 1;
     margin: 0 auto;
-
 }
 
 #detaljer table {
@@ -122,7 +120,8 @@ select>option {
   border-left: 1px solid #ddd;
 }
 
-#detaljer tbody th, td {
+#detaljer tbody th, 
+#detaljer tbody td {
   font-weight: normal;
   text-align: left;
   font-size: 14px;
@@ -131,6 +130,7 @@ select>option {
 
 #detaljer tbody td {
     font-weight: bold;
+    white-space: nowrap;
 }
 
 #detaljer thead{
@@ -142,18 +142,11 @@ select>option {
 
 #detaljer thead th{
     padding: 12px;
-
-}
-
-#detaljer tbody th:nth-child(even) {
-    background-color: #fff;
 }
 
 #detaljer tbody tr:nth-child(even)  {
     background-color: #eee;
 }
-
-
 
 @media (max-width: 750px) {
 
@@ -174,27 +167,27 @@ select>option {
 
     #chart-wrapper {
         width: 100%;
+        max-width: 100%;
     }
 
     #detaljseksjon {
-        
+        margin-top: 1rem;
         flex-direction: column-reverse;
         align-items: stretch;
     }
 
     #sted-liste {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-        padding: 5px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.8rem 2rem;
+        justify-self: start;
+        padding-left: 2rem;
         box-sizing: border-box;
-        gap: 25px;
+        width: 100%;
     }
 
     .sted-valg {
-        width: auto;
-        white-space: nowrap;
+        min-width: 140px;
         display: flex;
         align-items: center;
         gap: 5px;
