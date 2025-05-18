@@ -1,7 +1,7 @@
 // En dynamisk datavisualisering av boligpriser med SVG-graf og interaktivt grensesnitt
 
 fetch('./boligprisstatistikk.json')
-    .then(respone => respone.json())
+    .then(res => res.json())
     .then(data => {
         const feltVelger = document.getElementById('felt');
         const chart = document.getElementById('chart');
