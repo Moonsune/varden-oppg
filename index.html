@@ -7,11 +7,15 @@
        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        
+        <!-- Tittel -->
         <h2>Boligprisutvikling</h2>
+             <!-- Hovedcontainer for graf og detaljer -->
             <div id="innhold">
+                 <!-- Seksjon for graf og feltvalg -->
                 <div id="chart-seksjon">
+                        <!-- Dropdown for å velge hvilket felt som vises i graf -->
                         <div id="select-wrapper">
+                             <!-- Feltvalg basert på datanøkler -->
                             <select id="felt">
                                 <option value="Endring siste måned">Endring siste måned</option> 
                                 <option value="Endring sesongjustert siste måned">Sesongjustert siste måned</option> 
@@ -23,17 +27,25 @@
                                 <option value="Gjennomsnittspris">Gjennomsnittspris</option>
                             </select>
                         </div>
+
+                         <!-- Dynamisk SVG graf med søyler og en wrapper -->
                         <div id="chart-wrapper">
                             <svg id="chart" viewBox="0 0 410 250"></svg>
                         </div>
-            </div>
-
-                <div id="detaljseksjon">
-                <div id="sted-liste"></div>
-                <div id="detaljer"></div>
                 </div>
 
+                        <!-- Seksjon for detaljer og stedvalg -->
+                        <div id="detaljseksjon">
+
+                             <!-- Liste over steder med radioknapper -->
+                            <div id="sted-liste"></div>
+
+                             <!-- Viser detaljer for valgt sted -->
+                            <div id="detaljer"></div>
+                        </div>
+
             </div>
-        <script src="script.js"></script>
+             <!-- Script som håndterer graf og interaktivitet -->
+            <script src="script.js"></script>
     </body>
 </html>

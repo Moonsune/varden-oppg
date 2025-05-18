@@ -1,3 +1,5 @@
+// En dynamisk datavisualisering av boligpriser med SVG-graf og interaktivt grensesnitt
+
 fetch('./boligprisstatistikk.json')
     .then(respone => respone.json())
     .then(data => {
@@ -5,10 +7,13 @@ fetch('./boligprisstatistikk.json')
         const chart = document.getElementById('chart');
         const stedListe = document.getElementById('sted-liste');
 
+        // Tegner grafen basert på valgt felt (feks "Endring siste år")
         function tegnGraf(felt) {
             chart.innerHTML = '';
             stedListe.innerHTML = '';
             const steder = Object.keys(data);
+
+            // Henter og parser alle verdier for valgt felt
             const verdier = steder.map(sted => {
                 const verdi = data[sted][felt];
                 return typeof verdi === 'string'
@@ -22,34 +27,39 @@ fetch('./boligprisstatistikk.json')
         const offsetY = 20;
         const grafBredde = 285;
         const harNegative = verdier.some(v => v < 0);
+
+        // Flytter x-nullpunktet til høyre dersom vi har negative verdier
         const nullpunktx = harNegative ? 250 : 120;
-
-        chart.innerHTML = harNegative
-        ? `<line x1="${nullpunktx}" y1="15" x2="${nullpunktx}" y2="225" stroke="#ccc" stroke-width="1"/>`
-        : `<line x1="${nullpunktx}" y1="15" x2="${nullpunktx}" y2="225" stroke="#ccc" stroke-width="1"/>`;
-
         const antallSteg = 5;
         const steg = maxAbs / antallSteg;
 
+        let svgContent = '';
+
+        // Vertikal null-linje
+        svgContent += `<line x1="${nullpunktx}" y1="15" x2="${nullpunktx}" y2="225" stroke="#ccc" stroke-width="1"/>`;
+
+        // Tegner akseverdier og små markører
         for (let i = -antallSteg; i <= antallSteg; i++) {
             const verdi = steg * i;
             if (!harNegative && verdi < 0) continue;
 
             const pos = nullpunktx + (verdi / maxAbs) * (grafBredde / (harNegative ? 2 : 1));
             
-            chart.innerHTML += `
+            svgContent += `
             <text x="${pos}" y="240" font-size="8" fill="#666" text-anchor="middle">
             ${Math.round(verdi).toLocaleString('no-NO')}</text>
             <line x1="${pos}" y1="228" x2="${pos}" y2="222" stroke="#999" stroke-width="1"/>
             `;
 
-            chart.innerHTML += `
-            <line x1="${nullpunktx - (harNegative ? grafBredde / 2 : 0)}" y1="225" x2="${nullpunktx + grafBredde / (harNegative ? 2 : 1)}"
-            y2="225" stroke="#ccc" stroke-width="1"/>
-            `;
         }
 
+        // Horisontal linje under søylene
+        svgContent += `
+        <line x1="${nullpunktx - (harNegative ? grafBredde / 2 : 0)}" y1="225" x2="${nullpunktx + grafBredde / (harNegative ? 2 : 1)}"
+        y2="225" stroke="#ccc" stroke-width="1"/>
+        `;
 
+        // Genererer alle søyler
         steder.forEach((sted, i) => {
             const verdi = verdier[i];
             const skalertVerdi = (verdi / maxAbs) * (grafBredde / (harNegative ? 2 : 1)) ;
@@ -60,7 +70,7 @@ fetch('./boligprisstatistikk.json')
             const tekstX = verdi >= 0 ? x + bredde - 5 : x + 5;
             const tekstAnchor = verdi >= 0 ? 'end' : 'start';
 
-            chart.innerHTML += `
+            svgContent += `
             
                 <rect x="${x}" y="${y}" width="${bredde}" height="${barHeight}" fill="${farge}" rx="4" ry="4"
                     data-sted="${sted}" class="bar">
@@ -73,9 +83,11 @@ fetch('./boligprisstatistikk.json')
             `;
         });
 
+        chart.innerHTML = svgContent;
+        stedListe.innerHTML = '';
         
+        // Genererer radioknapper for hvert sted
         let første = true;
-
         Object.keys(data).forEach(sted => {
             const label = document.createElement('label');
             label.className = 'sted-valg';
@@ -94,28 +106,16 @@ fetch('./boligprisstatistikk.json')
             radio.addEventListener('change', () => {
                 if (radio.checked) visDetaljer(sted);
             });
-                       label.appendChild(radio);
+            label.appendChild(radio);
             label.appendChild(document.createTextNode(sted));
             stedListe.appendChild(label);
 
             });
 
-            chart.addEventListener('click', e => {
-                if (e.target.classList.contains('bar')) {
-                    const valgtSted = e.target.dataset.sted;
-                    const radio = document.querySelector(`input[name="sted"][value="${valgtSted}"]`);
-                    if (radio) {
-                        radio.checked = true;
-                        visDetaljer(valgtSted);
-                    }
-                };
-            });
- 
-
-
         visDetaljer(steder[0]);
         }
 
+        // Viser detaljer i tabell for valgt sted
         function visDetaljer(sted) {
             const info = data[sted];
             const detaljer = document.getElementById('detaljer');
@@ -135,12 +135,25 @@ fetch('./boligprisstatistikk.json')
             detaljer.innerHTML = html;
         }
 
+        // Endrer graf ved endring av feltvalg
         feltVelger.addEventListener('change', () => {
             tegnGraf(feltVelger.value);
         });
 
+        // Klikk på søyle oppdaterer valgt sted i detaljer tabell (Gjør det samme som å trykke på radioknapp)
+        chart.addEventListener('click', e => {
+            if (e.target.classList.contains('bar')) {
+                const valgtSted = e.target.dataset.sted;
+                const radio = document.querySelector(`input[name="sted"][value="${valgtSted}"]`);
+                if (radio) {
+                    radio.checked = true;
+                    visDetaljer(valgtSted);
+                }
+            };
+        });
+
+        // Visning
         tegnGraf(feltVelger.value);
-        
     })
 
     .catch(err => {

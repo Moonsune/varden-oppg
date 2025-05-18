@@ -60,6 +60,10 @@ select > option {
     border-radius: 15px;
 }
 
+#chart rect {
+    transition: all 0.3s ease;
+}
+
 #chart rect:hover {
     opacity: 0.8;
     cursor: pointer;
@@ -73,15 +77,17 @@ select > option {
 #select-wrapper {
     position: absolute;
     left: -230px;
-
+    /* Plasserer select til venstre for grafen på store skjermer */
 }
 
 .stolpe-verdi {
-    text-shadow: rgb(133, 133, 133) 1px 0 10px;
+    text-shadow: #333 1px 0 10px;
     font-size: 8px;
     font-weight: bold;
     fill: white;
     pointer-events: none;
+
+    /* Sørger for at tallene vises tydelig på søylene */
 }
 
 
@@ -93,6 +99,7 @@ select > option {
     box-shadow: 0px 5px 10px 0px #e6e6e6;
     border: 1px solid #ddd;
     overflow: hidden;
+    /* Inneholder stedsliste og detaljer i side-by-side layout */
 }
 
 #sted-liste {
@@ -115,17 +122,18 @@ select > option {
 }
 
 #detaljer table {
-  border-collapse: collapse;
-  box-shadow: 0px 5px 10px 0px #e6e6e6;
-  border-left: 1px solid #ddd;
+    border-collapse: collapse;
+    box-shadow: 0px 5px 10px 0px #e6e6e6;
+    border-left: 1px solid #ddd;
+    /* Tabelldesign med venstremarg og skygge */
 }
 
 #detaljer tbody th, 
 #detaljer tbody td {
-  font-weight: normal;
-  text-align: left;
-  font-size: 14px;
-  padding: 1rem 2rem;
+    font-weight: normal;
+    text-align: left;
+    font-size: 14px;
+    padding: 1.2rem 2rem;
 }
 
 #detaljer tbody td {
@@ -137,7 +145,6 @@ select > option {
     text-align: center;
     box-shadow: 0px 5px 10px 0px #e6e6e6;
     background-color: white;
-
 }
 
 #detaljer thead th{
@@ -148,32 +155,34 @@ select > option {
     background-color: #eee;
 }
 
-@media (max-width: 750px) {
+@media screen and (max-width: 1024px) {
+        #select-wrapper {
+        position: static;
+        margin-bottom: 0 0 1rem 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        /* Flytter select opp og sentrerer den på mellomstore skjermer fra og med 1024px*/
+    }
+    
+}
+
+@media screen and (max-width: 750px) {
 
     #chart-seksjon {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0 1rem;
         box-sizing: border-box;
-    }
-
-    #select-wrapper {
-        position: static;
-        margin-bottom: 0 0 1rem 0;
-        width: 100%;
-    }
-
-    #chart-wrapper {
-        width: 100%;
-        max-width: 100%;
+        padding-right: 10px;
     }
 
     #detaljseksjon {
         margin-top: 1rem;
         flex-direction: column-reverse;
         align-items: stretch;
+        /* På mobil: detaljer vises over stedsliste */
     }
 
     #sted-liste {
@@ -184,6 +193,7 @@ select > option {
         padding-left: 2rem;
         box-sizing: border-box;
         width: 100%;
+        /* Gridlayout for bedre visning av radioknapper på små skjermer */
     }
 
     .sted-valg {
@@ -201,10 +211,10 @@ select > option {
         width: 100%;
     }
 
-
     body {
         max-width: 100%;
         overflow-x: hidden;
         padding: 10px;
     }
 }
+
