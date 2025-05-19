@@ -12,7 +12,7 @@
 - Jeg har laget et interaktivt søylediagram ved hjelp av **ren SVG**, som genereres dynamisk utifra datasettet.
 - Brukeren kan velge hvilket felt som skal vises via en **dropdown-meny**.
 - Når man klikker på en søyle, vises detaljer for det valgte stedet, og radioknapper som lar brukeren enkelt veksle mellom steder man ønsker å se detaljer for.
-- Layouten er **responsivt**, med tilpasset visning på mobil, nettbret og desktop.
+- Layouten er **responsivt**, med tilpasset visning på mobil, nettbrett og desktop.
 
 ## Teknisk
 
