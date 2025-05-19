@@ -46,8 +46,14 @@ fetch('./boligprisstatistikk.json')
             const pos = nullpunktx + (verdi / maxAbs) * (grafBredde / (harNegative ? 2 : 1));
             
             svgContent += `
-            <text x="${pos}" y="240" font-size="8" fill="#666" text-anchor="middle">
-            ${Math.round(verdi).toLocaleString('no-NO')}</text>
+            <text x="${pos}" y="240" font-size="8" fill="#666" text-anchor="${i === antallSteg ? 'end' : i === -antallSteg ? 'start' : 'middle'}">
+            ${felt === 'Gjennomsnittspris'
+            ? (verdi / 1_000_000).toFixed(1) + 'M'
+            : felt === 'Endring siste måned'
+                ? verdi.toFixed(1)
+                : Math.round(verdi).toLocaleString('no-NO')
+            }
+            </text>
             <line x1="${pos}" y1="228" x2="${pos}" y2="222" stroke="#999" stroke-width="1"/>
             `;
 

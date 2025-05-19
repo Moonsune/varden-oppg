@@ -76,7 +76,7 @@ select > option {
 
 #select-wrapper {
     position: absolute;
-    left: -230px;
+    left: -250px;
     /* Plasserer select til venstre for grafen på store skjermer */
 }
 
